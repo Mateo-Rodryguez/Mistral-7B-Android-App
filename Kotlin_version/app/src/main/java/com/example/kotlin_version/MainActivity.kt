@@ -29,12 +29,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Find EditText, Button and ListView
+        // Declaring EditText, Button and ListView
         editTextPrompt = findViewById(R.id.message_input_field)
         val sendButton = findViewById<Button>(R.id.send_button)
         chatList = findViewById(R.id.chat_list)
 
-        // Initialize chat adapter
+        // Initializing the chat adapter
         chatAdapter = ChatAdapter(this, R.layout.item_chat_message, mutableListOf())
         chatList.adapter = chatAdapter
 
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                 false
             }
         }
-        // Handle Button click
+        // Handling the send button click
         sendButton.setOnClickListener {
             val userInput = editTextPrompt.text.toString()
             processUserInput(userInput)
@@ -61,12 +61,12 @@ class MainActivity : AppCompatActivity() {
 
     // Function to process user input and update ListView
     private fun processUserInput(userInput: String) {
-        // Add user's message to chat adapter
+        // addint the user input to the chat adapter
         chatAdapter.add(ChatMessage("You: $userInput", true))
 
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                val url = URL("http://10.0.2.2:5000/generate") // Replace with your Flask server URL
+                val url = URL("http://10.0.2.2:5000/generate")
                 val conn = url.openConnection() as HttpURLConnection
                 conn.requestMethod = "POST"
                 conn.setRequestProperty("Content-Type", "application/json; utf-8")
