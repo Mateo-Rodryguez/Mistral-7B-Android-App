@@ -34,3 +34,4 @@ typing_extensions==4.10.0
 urllib3==2.2.1
 Werkzeug==3.0.1
 wheel==0.43.0
+flask-cors

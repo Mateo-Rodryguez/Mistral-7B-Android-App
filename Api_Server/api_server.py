@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify
 from transformers import AutoTokenizer, AutoModelForCausalLM
-
+from flask_cors import CORS
 # Initialize Flask app
 app = Flask(__name__)
-
+CORS(app)
 # Load the tokenizer and model
 tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.2")
 model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-Instruct-v0.2")
